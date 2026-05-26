@@ -18,12 +18,10 @@ version = "0.1.0"
 [workspace.dependencies]
 anyhow = "1.0.100"
 base64 = "0.22.1"
-# Public `dioxus-icons` support starts at Dioxus 0.7.7 and follows the
-# compatible 0.7.x line. Keep renderer feature selection in app crates.
-dioxus = { version = "0.7.7", default-features = false, features = ["html", "macro"] }
+dioxus = { version = "=0.8.0-alpha.0", default-features = false, features = ["html", "macro"] }
 # Required by Dioxus props and RSX expansion.
-dioxus-signals = "0.7.7"
-lazy-js-bundle = "0.7.7"
+dioxus-signals = { version = "=0.8.0-alpha.0" }
+lazy-js-bundle = { version = "=0.8.0-alpha.0" }
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 sha2 = "0.10.9"

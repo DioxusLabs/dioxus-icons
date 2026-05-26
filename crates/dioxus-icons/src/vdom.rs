@@ -23,11 +23,7 @@ const STROKE_LINEJOIN: AttributeDescription = ("stroke-linejoin", None, false);
 
 #[inline]
 pub(crate) const fn icon_template(roots: &'static [TemplateNode]) -> Template {
-    Template {
-        roots,
-        node_paths: &[],
-        attr_paths: ICON_ATTR_PATHS,
-    }
+    Template::new(roots, &[], ICON_ATTR_PATHS)
 }
 
 #[inline]
