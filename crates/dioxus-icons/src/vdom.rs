@@ -1,15 +1,10 @@
-use dioxus::core::{
-    Attribute, AttributeValue, DynamicNode, Element, Template, TemplateAttribute, TemplateNode,
-    VNode,
-};
+use dioxus::core::{Attribute, AttributeValue, DynamicValues, Element, Template, VNode};
+use dioxus_core_template::{TemplateRawTree, TemplateStorage};
 
 use crate::IconProps;
 
 type AttributeDescription = (&'static str, Option<&'static str>, bool);
 const SVG_NAMESPACE: Option<&'static str> = Some("http://www.w3.org/2000/svg");
-const EMPTY_CHILDREN: &[TemplateNode] = &[];
-const ICON_ATTR_PATHS: &[&[u8]] = &[&[0u8]];
-static DEFAULT_SVG_ATTRS: [TemplateAttribute; 1] = svg_attrs();
 
 const XMLNS: AttributeDescription = ("xmlns", None, false);
 const WIDTH: AttributeDescription = ("width", None, false);
@@ -21,91 +16,88 @@ const STROKE_WIDTH: AttributeDescription = ("stroke-width", None, false);
 const STROKE_LINECAP: AttributeDescription = ("stroke-linecap", None, false);
 const STROKE_LINEJOIN: AttributeDescription = ("stroke-linejoin", None, false);
 
+/// Storage capacity for a single icon's template. Some icons (e.g. those with many dashed
+/// path segments) need more than the default 128 ops/strings, so every icon gets a generous
+/// fixed allowance.
+pub(crate) type IconTemplateStorage = TemplateStorage<256, 256, 32>;
+
+/// Build a static [`Template`] from a [`TemplateRawTree`].
+///
+/// The tree must already be fully assembled (with all nested `&TemplateRawTree` references
+/// resolved) by the caller, since a `TemplateStorage` needs a `'static` place to live in and
+/// can't be produced from inside a helper function.
 #[inline]
-pub(crate) const fn icon_template(roots: &'static [TemplateNode]) -> Template {
-    Template::new(roots, &[], ICON_ATTR_PATHS)
+pub(crate) const fn icon_template(storage: &'static IconTemplateStorage) -> Template {
+    storage.as_template()
 }
 
 #[inline]
-pub(crate) const fn svg_attrs() -> [TemplateAttribute; 1] {
-    [dynamic_attr(0)]
+pub(crate) const fn icon_storage(tree: &'static TemplateRawTree) -> IconTemplateStorage {
+    IconTemplateStorage::build_from_tree(tree)
 }
 
 #[inline]
-pub(crate) const fn svg(children: &'static [TemplateNode]) -> TemplateNode {
-    svg_with_attrs(&DEFAULT_SVG_ATTRS, children)
-}
-
-#[inline]
-pub(crate) const fn svg_with_attrs(
-    attrs: &'static [TemplateAttribute],
-    children: &'static [TemplateNode],
-) -> TemplateNode {
-    TemplateNode::Element {
+pub(crate) const fn svg(children: &'static TemplateRawTree) -> TemplateRawTree {
+    TemplateRawTree::Element {
         tag: "svg",
         namespace: SVG_NAMESPACE,
-        attrs,
+        attrs: &TemplateRawTree::DynamicAttr,
         children,
     }
 }
 
 #[inline]
-pub(crate) const fn path(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn path(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("path", attrs)
 }
 
 #[inline]
-pub(crate) const fn circle(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn circle(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("circle", attrs)
 }
 
 #[inline]
-pub(crate) const fn rect(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn rect(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("rect", attrs)
 }
 
 #[inline]
-pub(crate) const fn line(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn line(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("line", attrs)
 }
 
 #[inline]
-pub(crate) const fn polyline(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn polyline(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("polyline", attrs)
 }
 
 #[inline]
-pub(crate) const fn polygon(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn polygon(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("polygon", attrs)
 }
 
 #[inline]
-pub(crate) const fn ellipse(attrs: &'static [TemplateAttribute]) -> TemplateNode {
+pub(crate) const fn ellipse(attrs: &'static TemplateRawTree) -> TemplateRawTree {
     child("ellipse", attrs)
 }
 
 #[inline]
-const fn child(tag: &'static str, attrs: &'static [TemplateAttribute]) -> TemplateNode {
-    TemplateNode::Element {
+const fn child(tag: &'static str, attrs: &'static TemplateRawTree) -> TemplateRawTree {
+    TemplateRawTree::Element {
         tag,
         namespace: SVG_NAMESPACE,
         attrs,
-        children: EMPTY_CHILDREN,
+        children: &TemplateRawTree::Empty,
     }
 }
 
 #[inline]
-pub(crate) const fn attr(name: &'static str, value: &'static str) -> TemplateAttribute {
-    TemplateAttribute::Static {
+pub(crate) const fn attr(name: &'static str, value: &'static str) -> TemplateRawTree {
+    TemplateRawTree::StaticAttr {
         name,
         value,
         namespace: None,
     }
-}
-
-#[inline]
-const fn dynamic_attr(id: usize) -> TemplateAttribute {
-    TemplateAttribute::Dynamic { id }
 }
 
 #[inline]
@@ -147,13 +139,13 @@ pub(crate) fn icon_element(
     push_default_attr(&mut root_attributes, &attributes, STROKE_LINEJOIN, "round");
     root_attributes.extend(attributes);
 
-    let dynamic_attributes = Box::new([root_attributes.into_boxed_slice()]);
-    let dynamic_nodes: Box<[DynamicNode]> = Box::new([]);
     Ok(VNode::new(
-        None,
         template,
-        dynamic_nodes,
-        dynamic_attributes,
+        DynamicValues::from_parts(
+            None,
+            Box::new([]),
+            Box::new([root_attributes.into_boxed_slice()]),
+        ),
     ))
 }
 
