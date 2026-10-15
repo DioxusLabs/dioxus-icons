@@ -18,12 +18,11 @@ version = "0.1.0"
 [workspace.dependencies]
 anyhow = "1.0.100"
 base64 = "0.22.1"
-dioxus = { git = "https://github.com/DioxusLabs/dioxus", default-features = false, features = ["html", "macro"] }
+dioxus = { version = "=0.8.0-alpha.2", default-features = false, features = ["html", "macro"] }
 # Required by Dioxus props and RSX expansion.
-dioxus-signals = { git = "https://github.com/DioxusLabs/dioxus" }
-# Required to build static templates by hand outside of the `rsx!` macro.
-dioxus-core-template = { git = "https://github.com/DioxusLabs/dioxus" }
-lazy-js-bundle = { git = "https://github.com/DioxusLabs/dioxus" }
+dioxus-signals = "=0.8.0-alpha.2"
+dioxus-core-template = "=0.8.0-alpha.2"
+lazy-js-bundle = "=0.8.0-alpha.2"
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 sha2 = "0.10.9"
