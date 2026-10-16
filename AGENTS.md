@@ -12,7 +12,7 @@
 - Generated files under `crates/dioxus-icons/src/generated/` should not be edited by hand.
 - Regenerate with `cargo run -p dioxus-icons-codegen`.
 - If generated output changes, inspect the Lucide version pin and manifest diff.
-- Public `dioxus-icons` support starts at Dioxus 0.7.7 and follows the compatible 0.7.x line.
+- On this branch, `dioxus-icons` 0.2 prereleases pin the matching Dioxus 0.8 prerelease exactly; 0.1 supports Dioxus 0.7.7 and later 0.7.x.
 - Keep renderer feature selection in app crates.
 - `dioxus-signals` stays a normal dependency because generated Dioxus props and RSX expansion rely on Dioxus' signal-compatible prop machinery.
 - docs.rs picker/widgets are part of the published docs surface.
