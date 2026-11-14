@@ -2,7 +2,7 @@
 // Lucide icons are licensed under ISC. See LICENSE-LUCIDE.
 
 use dioxus::core::{Element, Template};
-use dioxus_core_template::TemplateRawTree;
+use dioxus_vdom_template::TemplateRawTree;
 
 use crate::IconProps;
 use crate::vdom::{
