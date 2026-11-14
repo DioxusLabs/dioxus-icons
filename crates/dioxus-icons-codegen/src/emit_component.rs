@@ -12,7 +12,7 @@ pub fn emit_component(icon: &Icon) -> Result<String> {
     ));
     output.push_str("// Lucide icons are licensed under ISC. See LICENSE-LUCIDE.\n\n");
     output.push_str("use dioxus::core::{Element, Template};\n");
-    output.push_str("use dioxus_core_template::TemplateRawTree;\n\n");
+    output.push_str("use dioxus_vdom_template::TemplateRawTree;\n\n");
     output.push_str(&format!(
         "use crate::vdom::{{{}}};\n",
         vdom_imports(icon).join(", ")

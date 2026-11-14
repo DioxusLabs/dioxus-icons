@@ -4,7 +4,6 @@ description = "Lucide icons for Dioxus, one component per icon."
 categories.workspace = true
 documentation = "https://docs.rs/dioxus-icons"
 edition.workspace = true
-homepage.workspace = true
 keywords.workspace = true
 license = "MIT AND ISC"
 readme = "../../README.md"
@@ -32,7 +31,7 @@ dioxus.workspace = true
 # Required by Dioxus props.
 dioxus-signals.workspace = true
 # Required to build static templates by hand outside of the `rsx!` macro.
-dioxus-core-template.workspace = true
+dioxus-vdom-template.workspace = true
 
 [build-dependencies]
 lazy-js-bundle.workspace = true
