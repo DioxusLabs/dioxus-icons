@@ -4,7 +4,6 @@ description = "Lucide icons for Dioxus, one component per icon."
 categories.workspace = true
 documentation = "https://docs.rs/dioxus-icons"
 edition.workspace = true
-homepage.workspace = true
 keywords.workspace = true
 license = "MIT AND ISC"
 readme = "../../README.md"

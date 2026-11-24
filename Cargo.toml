@@ -7,7 +7,6 @@ resolver = "3"
 
 [workspace.package]
 edition = "2024"
-homepage = "https://github.com/dioxuslabs/dioxus-icons"
 keywords = ["dioxus", "lucide", "icons", "svg", "components"]
 categories = ["gui", "web-programming", "wasm"]
 license = "MIT"
