@@ -967,7 +967,6 @@ name = "dioxus-icons"
 version = "0.2.0-alpha.3"
 dependencies = [
  "dioxus",
- "dioxus-core-template",
  "dioxus-signals",
  "lazy-js-bundle",
  "serde_json",
