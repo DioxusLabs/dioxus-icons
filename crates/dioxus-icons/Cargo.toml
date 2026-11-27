@@ -31,6 +31,8 @@ default = []
 dioxus.workspace = true
 # Required by Dioxus props.
 dioxus-signals.workspace = true
+dioxus-vdom.workspace = true
+dioxus-vdom-template.workspace = true
 
 [build-dependencies]
 lazy-js-bundle.workspace = true

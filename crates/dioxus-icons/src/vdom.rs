@@ -1,5 +1,5 @@
-use dioxus::core::internal::{TemplateRawTree, TemplateStorage};
-use dioxus::core::{Attribute, AttributeValue, DynamicValues, Element, Template, VNode};
+use dioxus_vdom::{Attribute, AttributeValue, DynamicValues, Element, Template, VNode};
+use dioxus_vdom_template::{TemplateRawTree, TemplateStorage};
 
 use crate::IconProps;
 

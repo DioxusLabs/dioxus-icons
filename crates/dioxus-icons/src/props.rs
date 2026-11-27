@@ -1,5 +1,5 @@
-use dioxus::core::{AttributeValue, IntoAttributeValue};
 use dioxus::prelude::*;
+use dioxus_vdom::{AttributeValue, IntoAttributeValue};
 
 /// Convenience size for SVG width and height.
 #[derive(Clone, PartialEq)]
