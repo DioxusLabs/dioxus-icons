@@ -28,11 +28,11 @@ default = []
 
 [dependencies]
 # The published crate intentionally uses only Dioxus core and HTML/SVG surface.
-dioxus.workspace = true
+dioxus-core.workspace = true
 # Required by Dioxus props.
 dioxus-signals.workspace = true
-# Required to build static templates by hand outside of the `rsx!` macro.
-dioxus-core-template.workspace = true
+dioxus-vdom.workspace = true
+dioxus-vdom-template.workspace = true
 
 [build-dependencies]
 lazy-js-bundle.workspace = true
