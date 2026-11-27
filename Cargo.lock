@@ -918,6 +918,7 @@ name = "dioxus-icons"
 version = "0.2.0-alpha.3"
 dependencies = [
  "dioxus",
+ "dioxus-core",
  "dioxus-signals",
  "dioxus-vdom",
  "dioxus-vdom-template",

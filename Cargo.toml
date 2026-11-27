@@ -19,6 +19,7 @@ version = "0.2.0-alpha.3"
 anyhow = "1.0.100"
 base64 = "0.22.1"
 dioxus = { version = "=0.8.0-alpha.4", default-features = false, features = ["html", "macro"] }
+dioxus-core = { version = "=0.8.0-alpha.4", default-features = false, features = ["html", "macro", "signals"] }
 # Required by Dioxus props and RSX expansion.
 dioxus-signals = "=0.8.0-alpha.4"
 dioxus-vdom = "=0.8.0-alpha.4"
