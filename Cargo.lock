@@ -915,7 +915,7 @@ dependencies = [
 
 [[package]]
 name = "dioxus-icons"
-version = "0.2.0-alpha.3"
+version = "0.2.0-alpha.4"
 dependencies = [
  "dioxus",
  "dioxus-core",
@@ -928,7 +928,7 @@ dependencies = [
 
 [[package]]
 name = "dioxus-icons-codegen"
-version = "0.2.0-alpha.3"
+version = "0.2.0-alpha.4"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
