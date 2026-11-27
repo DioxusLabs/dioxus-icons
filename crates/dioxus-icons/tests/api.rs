@@ -1,7 +1,7 @@
-use dioxus::core::AttributeValue;
 use dioxus::prelude::*;
 use dioxus::ssr::render_element;
 use dioxus_icons::lucide::{Calendar1, Trash, Type};
+use dioxus_vdom::AttributeValue;
 
 fn render_icon(element: Element) -> String {
     render_element(element)

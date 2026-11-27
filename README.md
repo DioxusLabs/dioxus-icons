@@ -26,7 +26,7 @@ The full Lucide set — 1,700+ icons — exposed as Dioxus components. Each icon
 
 ```toml
 [dependencies]
-dioxus-icons = "0.1"
+dioxus-icons = "0.2.0-alpha.3"
 ```
 
 ```rust
@@ -85,7 +85,7 @@ nav { class: "flex items-center gap-3 text-slate-900",
 
 ## Dioxus compatibility
 
-Targets the Dioxus `0.7.x` line starting at `0.7.7`. Pick your renderer features (`web`, `desktop`, `mobile`, `server`, `fullstack`) in your application crate.
+Version `0.2.0-alpha.3` targets Dioxus `0.8.0-alpha.3` (pinned exactly). For the Dioxus `0.7.x` line (from `0.7.7`), use `dioxus-icons` `0.1`. Pick your renderer features (`web`, `desktop`, `mobile`, `server`, `fullstack`) in your application crate.
 
 ## Examples
 
